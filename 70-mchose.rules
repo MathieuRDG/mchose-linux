@@ -1,0 +1,8 @@
+# MCHOSE A7 V2 Ultra: dongle 3837:100b, mouse on its cable 3837:4019.
+
+# hidraw access for the user sitting at the machine, dongle and cable alike.
+# uaccess has to be tagged before 73-seat-late.rules, hence the 70- prefix.
+KERNEL=="hidraw*", ATTRS{idVendor}=="3837", ATTRS{idProduct}=="100b|4019", TAG+="uaccess"
+
+# Keep both out of USB autosuspend, as the old rule meant to.
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="3837", ATTR{idProduct}=="100b|4019", ATTR{power/control}="on"
